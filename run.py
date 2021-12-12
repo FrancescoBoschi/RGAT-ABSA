@@ -47,7 +47,7 @@ def parse_args():
     # Model parameters
     parser.add_argument('--glove_dir', type=str, default='/data1/SHENWZH/wordvec',
                         help='Directory storing glove embeddings')
-    parser.add_argument('--bert_model_dir', type=str, default='/data1/SHENWZH/models/bert_base',
+    parser.add_argument('--bert_model_dir', type=str, default='/content/bert-base-uncased',
                         help='Path to pre-trained Bert model.')
     parser.add_argument('--pure_bert', action='store_true',
                         help='Cat text and aspect, [cls] to predict.')
