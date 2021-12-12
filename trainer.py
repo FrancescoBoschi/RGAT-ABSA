@@ -177,7 +177,7 @@ def train(args, train_dataset, model, test_dataset):
 
                 # Save model checkpoint
             i += 1
-            model.save('RGAT-epoch' + str(i) +'.h5')
+            torch.save(model,'RGAT-epoch' + str(i) +'.h5')
             if args.max_steps > 0 and global_step > args.max_steps:
                 epoch_iterator.close()
                 break
