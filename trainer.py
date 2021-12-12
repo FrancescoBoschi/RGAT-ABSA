@@ -135,6 +135,7 @@ def train(args, train_dataset, model, test_dataset):
     tr_loss, logging_loss = 0.0, 0.0
     all_eval_results = []
     model.zero_grad()
+    i = 0
     train_iterator = trange(int(args.num_train_epochs), desc="Epoch")
     set_seed(args)
     for _ in train_iterator:
@@ -175,7 +176,8 @@ def train(args, train_dataset, model, test_dataset):
                     logging_loss = tr_loss
 
                 # Save model checkpoint
-
+            i += 1
+            model.save('RGAT-epoch' + str(i) +'.h5')
             if args.max_steps > 0 and global_step > args.max_steps:
                 epoch_iterator.close()
                 break
