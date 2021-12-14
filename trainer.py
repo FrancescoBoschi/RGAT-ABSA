@@ -145,6 +145,7 @@ def train(args, train_dataset, model, test_dataset):
             batch = tuple(t.to(args.device) for t in batch)
 
             inputs, labels = get_input_from_batch(args, batch)
+            logger.info(inputs)
             logit = model(**inputs)
             loss = F.cross_entropy(logit, labels)
 
@@ -176,8 +177,8 @@ def train(args, train_dataset, model, test_dataset):
                     logging_loss = tr_loss
 
                 # Save model checkpoint
-            i += 1
-            torch.save(model,'RGAT-epoch' + str(i) +'.h5')
+            #i += 1
+            #torch.save(model,'RGAT-epoch' + str(i) +'.h5')
             if args.max_steps > 0 and global_step > args.max_steps:
                 epoch_iterator.close()
                 break
