@@ -12,6 +12,7 @@ from model_gcn import GAT, GCN, Rel_GAT
 from model_utils import LinearAttention, DotprodAttention, RelationAttention, Highway, mask_logits
 from tree import *
 
+logger = logging.getLogger(__name__)
 
 class Aspect_Text_GAT_ours(nn.Module):
     """
@@ -301,7 +302,7 @@ class Aspect_Bert_GAT(nn.Module):
         dep_feature = self.dep_embed(dep_tags)
         if self.args.highway:
             dep_feature = self.highway_dep(dep_feature)
-
+        logger.info(dep_feature)
         dep_out = [g(feature, dep_feature, fmask).unsqueeze(1) for g in self.gat_dep]  # (N, 1, D) * num_heads
         dep_out = torch.cat(dep_out, dim=1)  # (N, H, D)
         dep_out = dep_out.mean(dim=1)  # (N, D)
